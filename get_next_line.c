@@ -13,7 +13,7 @@ char	*save_res(char *line)
 		return (0);
 	}
 	i = ft_chr(line, '\n');
-	if (i)
+	if (i || line[0] == '\n')
 		res = ft_strjoin(res, &line[i + 1]);
 	free(line);
 	return (res);
@@ -42,6 +42,8 @@ char	*get_line(int fd, char *res)
 		}
 		buff[i] = '\0';
 		res = ft_strjoin(res, buff);
+		if (res[0] == '\n')
+			break;
 	}
 	free(buff);
 	return (res);
