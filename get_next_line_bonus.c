@@ -1,4 +1,4 @@
-#include "get_next_line_bonus.h"
+#include "get_next_line.h"
 
 
 char	*save_res(char *line)
@@ -77,23 +77,23 @@ char	*get_first(char	*src)
 
 char *get_next_line(int fd)
 {
-	static char	*res;
+	static char *res[100];
 	char		*line;
 
 	line = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	res = get_line(fd, res);
-	if (res == NULL)
+	res[fd] = get_line(fd, res[fd]);
+	if (res[fd] == NULL)
 		return (NULL);
-	line = get_first(res);
+	line = get_first(res[fd]);
 //	printf("this is the line:%s\n", line);
-	res = save_res(res);
+	res[fd] = save_res(res[fd]);
 //	printf("thisi is  res:%s\n", res);
 	if (line[0] == '\0')
 	{
 		free(line);
-		free(res);
+		free(res[fd]);
 		return (NULL);
 	}
 	return (line);

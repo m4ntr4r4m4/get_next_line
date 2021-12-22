@@ -1,0 +1,1 @@
+so the bonus idea >> is to make a matrix of the static variable & get_next_line and fd.
