@@ -1,9 +1,20 @@
-#include "get_next_line.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ahammoud <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/08 12:21:01 by ahammoud          #+#    #+#             */
+/*   Updated: 2022/01/08 12:25:00 by ahammoud         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "get_next_line.h"
 
 char	*save_res(char *line)
 {
-	int	i;
+	int		i;
 	char	*res;
 
 	res = NULL;
@@ -19,20 +30,19 @@ char	*save_res(char *line)
 	return (res);
 }
 
-
 char	*get_line(int fd, char *res)
 {
 	char	*buff;
-	int	i;
+	int		i;
 
-	buff =  malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	buff = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buff)
 	{
 		free(buff);
 		return (NULL);
 	}
 	i = 1;
-	while(!ft_chr(res, '\n') && i)
+	while (!ft_chr(res, '\n') && i)
 	{
 		i = read(fd, buff, BUFFER_SIZE);
 		if (i == -1)
@@ -43,7 +53,7 @@ char	*get_line(int fd, char *res)
 		buff[i] = '\0';
 		res = ft_strjoin(res, buff);
 		if (res[0] == '\n')
-			break;
+			break ;
 	}
 	free(buff);
 	return (res);
@@ -53,7 +63,7 @@ char	*get_first(char	*src)
 {
 	size_t	i;
 	char	*str;
-	
+
 	i = 0;
 	if (src == NULL)
 		return (NULL);
@@ -75,9 +85,9 @@ char	*get_first(char	*src)
 	return (str);
 }
 
-char *get_next_line(int fd)
+char	*get_next_line(int fd)
 {
-	static char *res[100];
+	static char	*res[100];
 	char		*line;
 
 	line = NULL;
@@ -87,9 +97,7 @@ char *get_next_line(int fd)
 	if (res[fd] == NULL)
 		return (NULL);
 	line = get_first(res[fd]);
-//	printf("this is the line:%s\n", line);
 	res[fd] = save_res(res[fd]);
-//	printf("thisi is  res:%s\n", res);
 	if (line[0] == '\0')
 	{
 		free(line);

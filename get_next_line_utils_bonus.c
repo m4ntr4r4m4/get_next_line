@@ -1,7 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ahammoud <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/08 12:29:13 by ahammoud          #+#    #+#             */
+/*   Updated: 2022/01/08 12:30:04 by ahammoud         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line_bonus.h"
+
 int	ft_strlen(char *str)
 {
-	int i = 0;
+	int	i;
+
+	i = 0;
 	while (str[i])
 		i++;
 	return (i);
@@ -37,7 +52,7 @@ int	ft_chr(char *s, int c)
 	while (i >= 0)
 	{
 		if (s[i] == c)
-			 j = i;
+			j = i;
 		i--;
 	}
 	if (j == -1)
@@ -88,6 +103,5 @@ char	*ft_strjoin(char *s1, char *s2)
 		dest[i + j] = '\0';
 	}
 	free(s1);
-//	free(s2);
 	return (dest);
 }
